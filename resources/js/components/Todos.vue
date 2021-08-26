@@ -1,12 +1,12 @@
 <template>
-    <div>
-       <h1>Todos</h1>
-    </div>
+  <div class="bg-indigo-500 p-3">
+    <p>todo items</p>
+  </div>
 </template>
 
 <script>
 export default {
-    
+
 }
 </script>
 
