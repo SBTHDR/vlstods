@@ -11913,6 +11913,25 @@ __webpack_require__.r(__webpack_exports__);
         name: ""
       }
     };
+  },
+  methods: {
+    addItem: function addItem() {
+      var _this = this;
+
+      if (this.item.name === '') {
+        return;
+      }
+
+      axios.post('api/item/store', {
+        item: this.item
+      }).then(function (res) {
+        if (res.status === 201) {
+          _this.item.name = "";
+        }
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    }
   }
 });
 
@@ -29719,7 +29738,13 @@ var render = function() {
         _vm._v(" "),
         _c("font-awesome-icon", {
           staticClass: "text-3xl m-2",
-          attrs: { icon: "plus-square" }
+          class: [_vm.item.name ? "text-white" : "text-indigo-800"],
+          attrs: { icon: "plus-square" },
+          on: {
+            click: function($event) {
+              return _vm.addItem()
+            }
+          }
         })
       ],
       1
