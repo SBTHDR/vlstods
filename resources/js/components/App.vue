@@ -7,7 +7,7 @@
            <AddTodo />
        </div>
        <div>
-           <Todos />
+           <Todos :items="items" v-on:dataupdate="getData()"/>
        </div>
     </div>
 </template>
@@ -20,6 +20,23 @@ export default {
     components: {
         AddTodo,
         Todos
+    },
+    data() {
+        return {
+            items: []
+        }
+    },
+    methods: {
+        getData() {
+            axios.get('api/items')
+            .then(res => {
+                this.items = res.data
+            })
+            .catch(err => console.log(err))
+        }
+    },
+    created() {
+        this.getData()
     }
 }
 </script>
