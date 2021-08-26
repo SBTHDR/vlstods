@@ -28,6 +28,7 @@ export default {
             .then(res => {
                 if (res.status === 201) {
                     this.item.name = ""
+                    this.$emit('dataupdate')
                 }
             })
             .catch (err => console.log(err))

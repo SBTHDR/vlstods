@@ -4,7 +4,7 @@
            <h1 class="text-2xl font-bold text-white p-3">Todos</h1>
        </header>
        <div class="mb-2">
-           <AddTodo />
+           <AddTodo v-on:dataupdate="getData()"/>
        </div>
        <div>
            <Todos :items="items" v-on:dataupdate="getData()"/>

@@ -11927,6 +11927,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         if (res.status === 201) {
           _this.item.name = "";
+
+          _this.$emit('dataupdate');
         }
       })["catch"](function (err) {
         return console.log(err);
@@ -12030,6 +12032,17 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         if (res.status === 200) {
           _this.$emit('dataupdate');
+        }
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    removeData: function removeData() {
+      var _this2 = this;
+
+      axios["delete"]('api/item/' + this.item.id).then(function (res) {
+        if (res.status === 200) {
+          _this2.$emit('dataupdate');
         }
       })["catch"](function (err) {
         return console.log(err);
@@ -29923,7 +29936,20 @@ var render = function() {
   return _c("div", { staticClass: "container mx-auto" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "mb-2" }, [_c("AddTodo")], 1),
+    _c(
+      "div",
+      { staticClass: "mb-2" },
+      [
+        _c("AddTodo", {
+          on: {
+            dataupdate: function($event) {
+              return _vm.getData()
+            }
+          }
+        })
+      ],
+      1
+    ),
     _vm._v(" "),
     _c(
       "div",

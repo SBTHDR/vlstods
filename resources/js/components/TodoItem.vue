@@ -26,8 +26,16 @@ export default {
                 }
             })
             .catch(err => console.log(err))
+        },
+        removeData() {
+            axios.delete('api/item/' + this.item.id)
+            .then(res => {
+                if (res.status === 200) {
+                    this.$emit('dataupdate')
+                }
+            })
+            .catch(err => console.log(err))
         }
-        
     }
 }
 </script>
